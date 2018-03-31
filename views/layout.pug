@@ -1,0 +1,18 @@
+include mixins/vendor_scripts
+include mixins/user_scripts
+include mixins/css
+
+doctype html
+html
+  head
+    title= title
+    meta(name="google-signin-client_id" content="1079937180082-8koha5vs47lcvdmq3nk2lcv3em535cbv.apps.googleusercontent.com")
+
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    +css
+    
+  body
+    block content
+
++vendor_scripts
++user_scripts

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div#tile_user
+    h2= title
+    div.g-signin2(data-onsuccess='onSignIn')
+    div#tip_register register or login using your Google account.
+    div.data
+      p Hello, 
+        span.username_print
+        button(onclick='signOut()' style='margin-left: 20px') Sign Out
+      //
+        p profile details
+        p#email
+      
+      
+  div#document
+    #menu
+      div.menu_btn(v-for='collection in collections')
+        h2 {{collection.name}}
+      //
+        ul categories
+          li equips
+          li food
+
+        
+          
