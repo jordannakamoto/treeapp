@@ -16,12 +16,9 @@ block content
       
   div#document
     #menu
-      div.menu_btn(v-for='collection in collections')
-        h2 {{collection.name}}
-      //
-        ul categories
-          li equips
-          li food
-
-        
-          
+      #collections
+        div.menu_btn(v-for='collection in collections')
+          h2 {{collection.name}}
+      #categories
+        div.menu_btn(v-for='category in categories') {{category}}
+    table#maintable

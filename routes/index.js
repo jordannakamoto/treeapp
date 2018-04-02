@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var items = require('../models/items');
 var furniture = require('../models/furniture');
+var equipment = require('../models/equipment');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -35,12 +36,19 @@ router.get('/collections', function(req, res, next) {
   res.send(payload.slice(1));
 });
 
-router.get('/finddocs/:collection', function(req, res, next) {
+router.get('/:collection', function(req, res, next) {
     var collection = req.params.collection;
     findDocs(collection);
     res.send(test[collection]);
   });
 
+router.post('/:collection/:doc_id/update', function(req, res, next) {
+    console.log(req.body)
+    var collection = req.params.collection;
+    var doc_id = req.params.doc_id;
+    updateDoc(collection,doc_id,req.body);
+    res.send('hi')
+  });
 
 
 /* QUERIES */
@@ -55,6 +63,9 @@ router.get('/finddocs/:collection', function(req, res, next) {
               if (collections[i].name.indexOf('_') == 0) { //remove hidden collections
                   collections.splice(i, 1);
               }
+              if (collections[i].name.indexOf('.') > -1) { //remove system
+                  collections.splice(i, 1);
+              }
             }
           }
     });
@@ -65,6 +76,17 @@ router.get('/finddocs/:collection', function(req, res, next) {
       test[collection] = equipment;
     });
 
+  }
+  
+  function updateDoc(collection,doc_id,update){
+    eval(collection.toLowerCase()).findById(doc_id, function (err, doc) {
+      if (err) return handleError(err);
+      // Prints "Space Ghost is a talk show host".
+      doc.set(update);
+      doc.save(function (err, updatedDoc) {
+        if (err) return handleError(err);
+      });
+});
   }
 
 module.exports = router;

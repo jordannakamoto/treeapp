@@ -1,4 +1,32 @@
 #menu .menu_btn{
     background: none;
     cursor: pointer;
+    overflow:hidden;
+}
+
+#menu {
+    display: flex;
+}
+
+#menu div{
+    margin-right: 1vw;
+}
+
+#categories{
+    padding-top: 14px;
+}
+
+#categories .menu_btn{
+    display: none;
+    padding: 14px 20px;
+    font-size: 16px;
+}
+
+#maintable_wrapper{
+    display: none;
+    max-width: 900px;
+}
+
+#maintable {
+    margin-left: 0;
 }
