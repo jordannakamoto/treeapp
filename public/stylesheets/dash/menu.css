@@ -5,7 +5,9 @@
 }
 
 #menu {
-    display: flex;
+    padding-left: 50px;
+    padding-top: 50px;
+    display: inline-flex;
 }
 
 #menu div{
@@ -13,20 +15,37 @@
 }
 
 #categories{
-    padding-top: 14px;
+    padding-top: 12px;
 }
 
 #categories .menu_btn{
     display: none;
     padding: 14px 20px;
     font-size: 16px;
+    background: white;
 }
 
 #maintable_wrapper{
     display: none;
-    max-width: 900px;
+    position: absolute;
+    z-index: -1;
+    top: 120px;
+    left: 4vw;
+    max-width: 1000px;
 }
 
+
 #maintable {
-    margin-left: 0;
+    font-family: fantasy;
+    margin-top: 40px;
+    margin-left: 3vw;
+}
+
+.dataTables_filter input{
+    width: 140px;
+    padding: 6px;
+    padding-top: 10px;
+    border: none;
+    border-bottom: solid 1px #f3f3f3;
+    outline: none;
 }

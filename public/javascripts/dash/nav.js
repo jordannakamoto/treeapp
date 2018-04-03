@@ -41,5 +41,4 @@ var nav = {
             }
         )}
     },
-    showTable : () => {}
 }

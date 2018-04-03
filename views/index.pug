@@ -8,8 +8,12 @@ block content
     div.data
       p Hello, 
         span.username_print
-        button(onclick='signOut()' style='margin-left: 20px') Sign Out
-      //
+        img(onclick='signOut()' src='/images/exit.png' style='margin-left: 20px; opacity: .8')
+    div#toolbar
+      .tool_btn#newItem_btn + New Item
+  #form1
+    textarea
+    //
         p profile details
         p#email
       

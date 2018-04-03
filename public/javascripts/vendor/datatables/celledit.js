@@ -215,7 +215,7 @@ function getInputHtml(currentColumnIndex, settings, oldValue) {
             input.html = "<textarea id='ejbeatycelledit' class='" + inputCss + "' onfocusout='$(this).updateEditableCell(this)' onkeyup='$(this).keyupEditableCell(event, this)'>" + oldValue + "</textarea>";
             break;
         case "textarea-confirm":
-            input.html = "<textarea id='ejbeatycelledit' class='" + inputCss + "' onfocusout='$(this).updateEditableCell(this)' onkeyup='$(this).keyupEditableCell(event, this)'>" + oldValue + "</textarea>";
+            input.html = "<textarea id='ejbeatycelledit' class='" + inputCss + "' onfocusout='$(this).updateEditableCell(this)' onkeyup='$(this).keyupEditableCell(event, this)'>&nbsp;<a href='javascript:void(0);' class='" + confirmCss + "' onclick='$(this).updateEditableCell(this)'>Confirm</a> <a href='javascript:void(0);' class='" + cancelCss + "' onclick='$(this).cancelEditableCell(this)'>Cancel</a> " + oldValue + "</textarea>";
             break;
         default: // text input
             input.html = "<input id='ejbeatycelledit' class='" + inputCss + "' onfocusout='$(this).updateEditableCell(this)' value='" + oldValue + " 'onkeyup='$(this).keyupEditableCell(event, this)'></input>";

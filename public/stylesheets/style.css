@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -25,7 +24,6 @@ a {
   width: 240px;
   display: inline-block;
   padding: 0px 20px 80px 20px;
-  border: solid 1px #cde7f0;
   border-radius: 2px;
 }
 
@@ -35,4 +33,69 @@ a {
   display: inline-block;
   background: #f6fbfc;
   color: #566c73;
+}
+
+#toolbar{
+  padding-top: 20px;
+  display: flex;
+  margin-top: 30px;
+  border-top: solid 1px #cbcbcb;
+}
+
+.tool_btn{
+  display: none;
+  font-family: 'Share Tech';
+  font-size: 16px;
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#newItem_btn{
+  color: #4C4C4C;
+  border-bottom: solid 4px #B7F8DB;
+  background-image: linear-gradient(-225deg, #DFFFCD 0%, #90F9C4 48%, #39F3BB 100%);
+}
+
+.tool_btn:hover{
+  transform: translateY(-1px);
+  transition: transform ease 200;
+}
+
+ 
+table.dataTable thead .sorting {
+  background: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current{
+  background: none;
+  border: none;
+}
+
+#toolbar {
+  width: 0px;
+  overflow: hidden;
+}
+
+#form1 {
+  display: none;
+}
+
+#form1 textarea{
+  padding: 5px;
+  outline: none;
+  width: 358px;
+}
+
+.ui-dialog{
+  outline: none;
+}
+.ui-dialog-titlebar {
+  height: 24px;
+  background: grey;
+}
+
+.ui-dialog-titlebar-close {
+  display: none;
 }

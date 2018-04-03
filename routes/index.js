@@ -4,6 +4,7 @@ var items = require('../models/items');
 var furniture = require('../models/furniture');
 var equipment = require('../models/equipment');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Lumeria Editor' });
@@ -13,6 +14,7 @@ router.get('/', function(req, res, next) {
 /* initialized here so that the async fns can make the API*/
 
 var mongoose = require('mongoose');
+
 mongoose.connect('mongodb://jnaxtea:benedict232@ds043605.mlab.com:43605/treeapp');
 
 var db = mongoose.connection;
@@ -20,7 +22,7 @@ var db = mongoose.connection;
 
 var collections;
 var documents = {};
-var test = {};
+var tree = {};
 
 
 db.once('open', function (ref) {
@@ -39,15 +41,27 @@ router.get('/collections', function(req, res, next) {
 router.get('/:collection', function(req, res, next) {
     var collection = req.params.collection;
     findDocs(collection);
-    res.send(test[collection]);
+    res.send(tree[collection]);
   });
+  
+router.get('/schema/:name', function(req, res, next) {
+    var schema = req.params.name;
+    var payload = equipment[schema].schema.obj;
+    res.send(payload)
+});
 
 router.post('/:collection/:doc_id/update', function(req, res, next) {
-    console.log(req.body)
+    console.log('updating:', req.body.name);
     var collection = req.params.collection;
     var doc_id = req.params.doc_id;
+    console.log(req.body)
     updateDoc(collection,doc_id,req.body);
-    res.send('hi')
+  });
+  
+router.post('/:collection/newDoc', function(req, res, next) {
+    console.log('uploading new document: '+req.body.name);
+    var collection = req.params.collection;
+    newDoc(collection,req.body);
   });
 
 
@@ -72,21 +86,29 @@ router.post('/:collection/:doc_id/update', function(req, res, next) {
   }
   
   function findDocs(collection) {
-    eval(collection.toLowerCase()).find({}, function (err, equipment) {
-      test[collection] = equipment;
+    eval(collection.toLowerCase())[collection].find({}, function (err, equipment) {
+      tree[collection] = equipment;
     });
 
   }
   
   function updateDoc(collection,doc_id,update){
-    eval(collection.toLowerCase()).findById(doc_id, function (err, doc) {
-      if (err) return handleError(err);
-      // Prints "Space Ghost is a talk show host".
-      doc.set(update);
+    eval(collection.toLowerCase())[update.category].findById(doc_id, function (err, doc) {
+      if (err) return console.log(err);
+      doc.set(update)
+      console.log(doc)
       doc.save(function (err, updatedDoc) {
-        if (err) return handleError(err);
+        if (err) return console.log(err);
+        console.log(updatedDoc)
       });
-});
+    });
   }
+  
+  function newDoc(collection,data){
+    equipment[data.category].create(data, function (err) {
+    if (err) return handleError(err);
+    })
+  }
+
 
 module.exports = router;
