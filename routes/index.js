@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://jnaxtea:benedict232@ds043605.mlab.com:43605/treeapp');
+mongoose.connect('mongodb://jnaxtea:derp@ds043605.mlab.com:43605/treeapp');
 
 var db = mongoose.connection;
 
